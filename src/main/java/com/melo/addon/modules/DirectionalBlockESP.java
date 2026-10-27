@@ -5,6 +5,7 @@ import meteordevelopment.meteorclient.events.render.Render3DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.renderer.ShapeMode;
 import meteordevelopment.meteorclient.settings.ColorSetting;
+import meteordevelopment.meteorclient.settings.EnumSetting;
 import meteordevelopment.meteorclient.settings.IntSetting;
 import meteordevelopment.meteorclient.settings.Setting;
 import meteordevelopment.meteorclient.settings.SettingGroup;
@@ -28,6 +29,8 @@ public class DirectionalBlockESP extends Module {
         .name("scan-interval").description("Ticks between scans; higher values reduce CPU use.").defaultValue(15).range(3, 60).sliderMax(30).build());
     private final Setting<SettingColor> color = sgGeneral.add(new ColorSetting.Builder()
         .name("color").description("ESP color.").defaultValue(Color.ORANGE).build());
+    private final Setting<ShapeMode> shapeMode = sgGeneral.add(new EnumSetting.Builder<ShapeMode>()
+        .name("shape-mode").description("Choose filled boxes, outlines, or both.").defaultValue(ShapeMode.Both).build());
 
     private final List<BlockPos> found = new ArrayList<>();
     private int ticks;
@@ -38,7 +41,7 @@ public class DirectionalBlockESP extends Module {
 
     @EventHandler
     private void onTick(TickEvent.Post event) {
-        if (mc.level == null || mc.player == null) return;
+        if (mc.level == null || mc.player == null) { found.clear(); return; }
         if (++ticks < scanInterval.get()) return;
         ticks = 0;
         found.clear();
@@ -64,7 +67,7 @@ public class DirectionalBlockESP extends Module {
     @EventHandler
     private void onRender(Render3DEvent event) {
         SettingColor c = color.get();
-        for (BlockPos pos : found) event.renderer.box(new AABB(pos), c, c, ShapeMode.Both, 0);
+        for (BlockPos pos : found) event.renderer.box(new AABB(pos), c, c, shapeMode.get(), 0);
     }
 
     @Override
