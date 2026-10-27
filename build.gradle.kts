@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     minecraft(libs.minecraft)
+    mappings(libs.yarn)
     add("modImplementation", libs.fabric.loader)
     add("modImplementation", libs.meteor.client)
 }
