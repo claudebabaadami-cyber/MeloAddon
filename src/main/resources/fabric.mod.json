@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "melo-addon",
+  "version": "${version}",
+  "name": "Melo Addon",
+  "description": "Client-side visual utility modules for Meteor Client.",
+  "authors": ["Melo"],
+  "environment": "client",
+  "entrypoints": {
+    "meteor": ["com.melo.addon.MeloAddon"]
+  },
+  "custom": {
+    "meteor-client:color": "190,35,35",
+    "modmenu": { "parent": { "id": "meteor-client" } }
+  },
+  "depends": {
+    "java": ">=${jdk_version}",
+    "minecraft": "${minecraft_version}",
+    "meteor-client": "*"
+  }
+}
