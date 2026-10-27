@@ -9,7 +9,6 @@ yarn = "1.21.11+build.6"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
-yarn = { module = "net.fabricmc:yarn", version.ref = "yarn", classifier = "v2" }
 fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
 meteor-client = { module = "meteordevelopment:meteor-client", version.ref = "meteor" }
 
