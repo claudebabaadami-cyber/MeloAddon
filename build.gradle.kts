@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     minecraft(libs.minecraft)
-    mappings("net.fabricmc:yarn:${libs.versions.yarn.get()}:v2")
+    mappings(loom.officialMojangMappings())
     add("modImplementation", libs.fabric.loader)
     add("modImplementation", libs.meteor.client)
 }
